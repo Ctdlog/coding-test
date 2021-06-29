@@ -18,6 +18,9 @@ def bfs(x, y):
     queue.append((x, y))
     # 큐가 빌 때까지 반복하기
     while queue:
+        print("-----------")
+        for i in graph:
+            print(i)
         x, y = queue.popleft()
         # 현재 위치에서 4가지 방향으로의 위치 확인
         for i in range(4):
