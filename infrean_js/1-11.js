@@ -1,13 +1,11 @@
-let s = "COMPUTERPROGRAMMING";
-
-function solution(s) {
-  let count = 0;
-  pos = s.indexOf("R");
-  while (pos !== -1) {
-    count++;
-    pos = s.indexOf("R", pos + 1);
+function solution(str) {
+  let answer = 0;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === str[i].toUpperCase()) {
+      answer++;
+    }
   }
-  return count;
+  return answer;
 }
 
-console.log(solution(s));
+console.log(solution("KoreaTimeGood"));
