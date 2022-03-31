@@ -13,6 +13,18 @@ solution(arrInput);
 
 function solution(arr) {
   // Write your code
+
+  // let answer = 0,
+  //   sum = 0,
+  //   lt = 0;
+  // for (let rt = 0; rt < arr.length; rt++) {
+  //   sum += arr[rt];
+  //   while (sum > m) {
+  //     sum -= arr[lt++];
+  //   }
+  //   answer += rt - lt + 1;
+  // }
+
   let cnt = 0;
   for (let i = 0; i <= n; i++) {
     let tmp = arr[i];
