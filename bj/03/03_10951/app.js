@@ -13,3 +13,5 @@ function solution(inputData) {
   }
   console.log(answer);
 }
+
+// 왜 마지막껄 출력 안해야 정답이지?
