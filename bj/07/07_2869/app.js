@@ -8,10 +8,8 @@ solution(input);
 
 function solution(arr) {
   // Write your code
-  let [a, r, v] = arr;
-  let dayMove = a - r;
+  let [a, b, v] = arr;
+  let dayMove = a - b;
 
-  if (v - a / dayMove >= 0) {
-    console.log(v - a / dayMove);
-  }
+  console.log(Math.ceil((v - a) / dayMove) + 1);
 }
