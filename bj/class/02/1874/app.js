@@ -19,15 +19,17 @@ function solution(n, nums) {
 
     while (count <= num) {
       stack.push(count++);
-      answer += '+ ';
+      answer += '+\n';
     }
 
     const popedItem = stack.pop();
 
     if (popedItem !== num) {
-      return 'NO';
+      console.log('NO');
+      return;
     }
-    answer += '- ';
-    console.log(num, answer);
+    answer += '-\n';
   }
+
+  console.log(answer);
 }
