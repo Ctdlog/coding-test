@@ -4,37 +4,28 @@
  * @return {number}
  */
 var search = function(nums, target) {
-    let low = 0;
-    let high = nums.length - 1;
+    let left = 0;
+	let right = nums.length - 1;
 
-    while (low < high) {
-        const middle = Math.floor((low + high) / 2);
-        if (nums[middle] == target) return middle;
+	while (left <= right) {
+		const mid = Math.floor((left + right) / 2);
 
-        // If the left side is ordered
-        if (nums[low] <= nums[middle]) {
-            // Number is in the left side
-            if (target >= nums[low] && target < nums[middle]) {
-                high = middle;
-            }
-            // Number is in the right side
-            else {
-                low = middle + 1;
-            }
-        }
-        // Right side is ordered
-        else {
-            // Number is in the right side
-            if (target > nums[middle] && target <= nums[high]) {
-                low = middle + 1;
-            }
-            // Number is in the left side
-            else {
-                high = middle;
-            }
-        }
-    }
+		if (nums[mid] === target) return mid;
 
-    // Reached the final number; return it if it matches the target, else target was not found
-    return nums[low] == target ? low : -1;
+		if (nums[left] <= nums[mid]) {
+			if (target >= nums[left] && target < nums[mid]) {
+				right = mid;
+			} else {
+				left = mid + 1;
+			}
+		} else {
+			if (target > nums[mid] && target <= nums[right]) {
+				left = mid + 1;
+			} else {
+				right = mid;
+			}
+		}
+	}
+
+	return nums[left] === target ? left : -1;
 };
