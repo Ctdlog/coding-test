@@ -128,3 +128,74 @@ function debounce(func, wait, options) {
 	debounced.flush = flush;
 	return debounced;
 }
+
+function run(generator, ...args) {
+	const generatorObj = generator(args);
+	function resumeIter(prevRes) {
+		const next = generatorObj.next(prevRes);
+		if (next.done) {
+			return Promise.resolve(next.value);
+		}
+		Promise.resolve(next.value).then((res) => {
+			resumeIter(res);
+		});
+	}
+
+	resumeIter();
+}
+async function main() {
+	try {
+		const response = await ajaxRequest('잘못된 URL', data);
+		render(response.data);
+	} catch (error) {
+		console.error(error); // 에러 발생
+	}
+}
+
+function ajaxRequest(url, data) {
+	return {
+		data: '안녕하세용',
+	};
+}
+
+console.log(3, () => {
+	console.log(4);
+});
+
+try {
+	setTimeout(() => {
+		throw new Error('Error!');
+	}, 1000);
+} catch (error) {
+	console.error(error);
+}
+
+try {
+	setTimeout(() => {
+		try {
+			throw new Error('Error!');
+		} catch (error) {
+			console.error(error);
+		}
+	}, 1000);
+} catch (error) {
+	console.error(error);
+}
+
+async function foo() {
+	const a = await new Promise((resolve) => setTimeout(() => resolve(1), 3000));
+	const b = await new Promise((resolve) => setTimeout(() => resolve(2), 2000));
+	const c = await new Promise((resolve) => setTimeout(() => resolve(3), 1000));
+
+	console.log(a, b, c); // 1 2 3
+}
+
+async function foo2() {
+	const res = Promise.all([
+		new Promise((resolve) => setTimeout(() => resolve(1), 3000)),
+		new Promise((resolve) => setTimeout(() => resolve(2), 2000)),
+		new Promise((resolve) => setTimeout(() => resolve(3), 1000)),
+	]);
+
+	console.log(res); // 1 2 3
+}
