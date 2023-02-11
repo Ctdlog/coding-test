@@ -3,22 +3,25 @@ const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 const input = fs.readFileSync(filePath).toString().trim().split('\n');
 
 const N = +input.shift();
-const cases = input.slice(0, 3);
 
-console.log(input);
+for (let i = 0; i < N; i++) {
+  const result = [];
+  const otherAnimalResult = [];
 
-const otherAnimal = [];
+  const foxSounds = input.shift().split(' ');
 
-for (let i = 0; i < input.length - 1; i++) {
-  otherAnimal.push(input[i].split(' ')[2]);
-}
+  while (true) {
+    const [animal, , sound] = input.shift().split(' ');
+    if (animal === 'what') {
+      for (let foxSound of foxSounds) {
+        if (!otherAnimalResult.includes(foxSound)) {
+          result.push(foxSound);
+        }
+      }
+      console.log(result.join(' '));
+      break;
+    }
 
-const result = [];
-
-for (let i of cases.split(' ')) {
-  if (!otherAnimal.includes(i)) {
-    result.push(i);
+    otherAnimalResult.push(sound);
   }
 }
-
-console.log(result.join(' '));
